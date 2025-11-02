@@ -53,9 +53,10 @@ function App() {
 
     try {
       setTimeout(async () => {
-        const response = await axios.post("http://127.0.0.1:8000/brew", {
-          ingredients: selectedPotions.join(", "),
-        });
+        const response = await axios.post(
+  `${import.meta.env.VITE_API_URL}/brew`,
+  { ingredients: selectedPotions.join(", ") }
+);
         const text = response.data.result.replace(/\n/g, "<br/>");
         const { name, icon } = randomPotionName();
 
