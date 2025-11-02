@@ -48,7 +48,7 @@ mystbrew/
 ## 🧰 Backend Setup (Render)
 
 1. Go to Render.com
-   → create a new Web Service
+   → create a new **Web Service**
 2. Connect your GitHub repository
 3. Root Directory → /backend
 4. Add Environment Variable:
@@ -72,8 +72,8 @@ requests==2.32.3
 
 ## 🌐 Frontend Setup (Vercel)
 
-1. Deploy the /frontend folder to Vercel
-2. In Project Settings → Root Directory, set it to /frontend
+1. Deploy the /frontend folder to **Vercel**
+2. In **Project Settings → Root Directory**, set it to /frontend
 3. Add Environment Variable:
   VITE_API_BASE=https://your-render-app.onrender.com
 4. Rebuild → Deploy 🚀
@@ -94,10 +94,10 @@ npm run dev
 ```
 
 ## 🔮 Features
-
-🧫 Mix 2–3 potions to discover unique recipes
-🌈 Animated cauldron that changes color dynamically
-🧠 AI-generated potion name, icon & effects
-📜 Potion history with clickable info
-💬 Responsive modal showing potion summary & effects
-🪄 Works beautifully on both mobile and desktop
+ 
+• 🧫 Mix 2–3 potions to discover unique recipes </br>
+• 🌈 Animated cauldron that changes color dynamically </br>
+• 🧠 AI-generated potion name, icon & effects </br>
+• 📜 Potion history with clickable info </br>
+• 💬 Responsive modal showing potion summary & effects </br>
+• 🪄 Works beautifully on both mobile and desktop </br>
