@@ -1,123 +1,103 @@
-# 🧙‍♂️ Mystbrew
+## 🧪 Mystbrew
 
-**Mystbrew** is a magical potion-mixing web app where users combine mystical ingredients to create unique brews — powered by AI!  
-Built with **React (Vite)** + **FastAPI**, and deployed on **Vercel** + **Render**.
+**Mix magical potions. Discover hidden recipes. Beware of chaos!** </br>
+✨ Live Demo → https://mystbrew.vercel.app/
 
-🌐 **Live App:** [https://mystbrew.vercel.app/](https://mystbrew.vercel.app/)
+## 🌙 About the Project
 
----
+**Mystbrew** is a magical brewing simulator where users mix potions to create mysterious elixirs.
+Each combination produces unique names, icons, and effects — powered by **AI-generated text** using Google’s Gemini model.
 
-## ✨ Features
+Built with **FastAPI + React (Vite)**, Mystbrew brings together the logic of backend magic and the beauty of modern UI animation.
+Whether you’re an alchemist or a curious soul, Mystbrew invites you to experiment, discover, and maybe… summon something unexpected. 🧙‍♀️
 
-- 🧪 Mix potions and discover unique magical effects  
-- ⚗️ Interactive cauldron animation when brewing  
-- 📜 View potion details in a clean, summarized modal  
-- 💡 AI-generated potion names and effects using **Google Gemini**  
-- 📱 Fully responsive layout (works on both web & mobile)
+## ⚙️ Tech Stack
 
----
+**Frontend:** React (Vite) </br>
+**Backend:** FastAPI + Google Generative AI (Gemini) </br>
 
-## 🗂️ Project Structure
+**Hosting:** </br>
+Frontend → **Vercel** </br>
+Backend → **Render**
+
+## 🧱 Project Structure
 ```
 mystbrew/
 │
 ├── backend/
-│ ├── main.py # FastAPI backend
-│ ├── requirements.txt # Dependencies for Render
-│ └── .env # GEMINI_API_KEY (not in repo)
+│   ├── main.py
+│   ├── requirements.txt
+│   └── .env
 │
-└── frontend/
-├── src/
-│ ├── App.jsx
-│ ├── components/
-│ │ ├── CauldronAnimation.jsx
-│ │ ├── PotionCard.jsx
-│ │ └── Modal.jsx
-│ ├── assets/ # Contains cauldron and potion icons
-│ └── App.css
-├── .env # VITE_API_URL for API endpoint
-├── package.json
-└── vite.config.js
+├── frontend/
+│   ├── index.html
+│   ├── vite.config.js
+│   ├── package.json
+│   └── src/
+│       ├── App.jsx
+│       ├── main.jsx
+│       └── components/
+│           ├── CauldronAnimation.jsx
+│           ├── CauldronAnimation.css
+│           ├── PotionInfoModal.jsx
+│           └── PotionInfoModal.css
+│
+└── README.md
 ```
 
-## ⚙️ Backend Setup (Render)
+## 🧰 Backend Setup (Render)
 
-1. Go to [Render.com](https://render.com) → **Create New Web Service**
-2. Connect your GitHub repo  
-3. Set **Root Directory** → `backend`
-4. Set **Build Command:**
+1. Go to Render.com
+   → create a new Web Service
+2. Connect your GitHub repository
+3. Root Directory → /backend
+4. Add Environment Variable:
+  GOOGLE_API_KEY=your_google_api_key
+5. Build Command:
+  pip install -r requirements.txt
+6. Start Command:
+  uvicorn main:app --host 0.0.0.0 --port 8000
+
+## Deploy 🎉
+
+✅ requirements.txt
 ```
-pip install -r requirements.txt
-```
-5. Set **Start Command:**
-```
-uvicorn main:app --host 0.0.0.0 --port 10000
-Add environment variable:
-GEMINI_API_KEY=your_google_gemini_key
-```
-✅ backend/requirements.txt
-```
-fastapi==0.120.3
-uvicorn==0.38.0
-langchain==1.0.3
-langchain-core==1.0.2
-langsmith==0.4.38
-langgraph==1.0.2
-langgraph-prebuilt==1.0.2
-langgraph-sdk==0.2.9
+fastapi==0.115.2
+uvicorn==0.30.6
 google-generativeai==0.8.5
-python-dotenv==1.2.1
-pydantic==2.12.3
-requests==2.32.5
+pydantic==2.9.2
+python-dotenv==1.0.1
+requests==2.32.3
 ```
 
-## 💻 Frontend Setup (Vercel)
-```
-Go to Vercel → New Project
-Import the same repo
-Set Root Directory → frontend
+## 🌐 Frontend Setup (Vercel)
 
-Add environment variable:
-VITE_API_URL=https://<your-backend-name>.onrender.com
+1. Deploy the /frontend folder to Vercel
+2. In Project Settings → Root Directory, set it to /frontend
+3. Add Environment Variable:
+  VITE_API_BASE=https://your-render-app.onrender.com
+4. Rebuild → Deploy 🚀
 
-Build command:
-arduino
-Copy code
-npm run build
+## 🧩 Local Development
 
-Output directory:
-nginx
-Copy code
-dist
-Deploy 🚀
-```
-
-## 🧠 Development (Local)
-1. Run **backend**
+Backend
 ```
 cd backend
-pip install -r requirements.txt
 uvicorn main:app --reload
 ```
-2. Run **frontend**
+
+Frontend
 ```
 cd frontend
 npm install
 npm run dev
-Then visit → http://localhost:5173
 ```
 
-## 🪄 Example Potions
-| Potion Name         | Description                                            | Effects                     |
-| ------------------- | ------------------------------------------------------ | --------------------------- |
-| 🌫️ **Shadow Mist** | A faintly glowing purple mist that enhances perception | Focus Boost, Calm Mind      |
-| 🔥 **Solar Elixir** | A golden liquid radiating warmth and optimism          | Energy Surge, Motivation    |
-| 🌊 **Lunar Dew**    | A shimmering blue brew that soothes and clarifies      | Emotional Balance, Serenity |
+## 🔮 Features
 
-
-## 🧑‍💻 Tech Stack
-| Category | Tech                                |
-| -------- | ----------------------------------- |
-| Frontend | React (Vite), Tailwind CSS          |
-| Backend  | FastAPI, LangChain, Gemini API      |
-| Hosting  | Vercel (frontend), Render (backend) |
+🧫 Mix 2–3 potions to discover unique recipes
+🌈 Animated cauldron that changes color dynamically
+🧠 AI-generated potion name, icon & effects
+📜 Potion history with clickable info
+💬 Responsive modal showing potion summary & effects
+🪄 Works beautifully on both mobile and desktop
