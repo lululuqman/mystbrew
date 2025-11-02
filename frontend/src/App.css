@@ -1,146 +1,153 @@
-body {
-  margin: 0;
-  background-color: #1b1325;
-  font-family: "Press Start 2P", system-ui, monospace;
-  color: #f5f3e7;
-  text-align: center;
-}
-
+/* Make app fill entire screen */
 .app {
-  padding: 20px;
-}
-
-.title {
-  font-size: 24px;
-  color: #ffdc7b;
-  margin-bottom: 10px;
-}
-
-.subtitle {
-  font-size: 12px;
-  line-height: 1.5;
-  white-space: pre-line;
-  margin-bottom: 30px;
-}
-
-.brew-btn,
-.home-btn,
-.reset-btn {
-  background-color: #5e3a9e;
-  border: 2px solid #c1a4ff;
-  color: #fff;
-  padding: 12px 24px;
-  margin: 10px;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 12px;
-  transition: all 0.2s ease-in-out;
-}
-
-.brew-btn:hover,
-.home-btn:hover,
-.reset-btn:hover {
-  background-color: #764fd0;
-}
-
-.potion-grid {
+  min-height: 100vh;
+  width: 100vw;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: radial-gradient(circle at center, #1b0f2a, #0e071a);
+  color: #fff;
+  overflow-x: hidden;
+  padding: 1.5rem;
+  box-sizing: border-box;
 }
 
-.potion-card {
-  background-color: #2d1e3a;
-  border: 2px solid #56406f;
-  padding: 16px;
-  width: 100px;
-  height: 100px;
-  border-radius: 10px;
+/* Screens use full width */
+.home-screen,
+.brew-screen {
+  width: 100%;
+  height: auto;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.5s ease-in-out;
+  box-sizing: border-box;
+}
+
+/* Top bar area */
+.top-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.home-btn {
+  background: linear-gradient(135deg, #a56cff, #7e4dfc);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+  background: linear-gradient(135deg, #c69aff, #a375ff);
+}
+
+/* Title section auto fits */
+.title {
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* Potion grid — auto fit width dynamically */
+.potion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.2rem;
+  width: 100%;
+  margin: 2rem 0;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Cards auto scale */
+.potion-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.potion-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
 }
 
 .potion-card.selected {
-  border-color: #d7b8ff;
-  background-color: #3a2750;
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #d7b8ff;
+  border: 2px solid #c69aff;
+  box-shadow: 0 0 15px #a375ff;
 }
 
+/* Icon & label scale */
 .potion-icon {
-  font-size: 36px;
-  margin-bottom: 8px;
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  margin-bottom: 0.4rem;
+}
+
+.potion-name {
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+}
+
+/* Buttons auto scale */
+.brew-btn,
+.reset-btn {
+  background: linear-gradient(135deg, #a56cff, #7e4dfc);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: clamp(0.6rem, 1vw, 1rem) clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.brew-btn:hover,
+.reset-btn:hover {
+  background: linear-gradient(135deg, #c69aff, #a375ff);
+  transform: scale(1.05);
+}
+
+/* Result section expands naturally */
+.combo-name {
+  margin-top: 1.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
 }
 
 .result {
-  margin-top: 30px;
-  background-color: #24172f;
-  border: 2px solid #c1a4ff;
-  padding: 20px;
-  border-radius: 12px;
-  font-size: 12px;
-  white-space: pre-line;
-}
-
-.cauldron-anim {
-  margin-top: 30px;
-  position: relative;
-}
-
-.bubble {
-  width: 20px;
-  height: 20px;
-  background-color: #b69bff;
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  animation: bubbleUp 1.5s ease-in-out infinite;
-}
-
-.bubble.delay {
-  animation-delay: 0.3s;
-}
-
-.bubble.delay2 {
-  animation-delay: 0.6s;
-}
-
-@keyframes bubbleUp {
-  0% {
-    transform: translate(-50%, 0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -80px) scale(1.2);
-    opacity: 0;
-  }
-}
-
-.combo-name {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #ffe9a3;
-  text-shadow: 0 0 6px #a084e8;
-}
-
-.history {
-  margin-top: 40px;
-  text-align: left;
-  max-width: 300px;
-  margin-inline: auto;
-  background-color: #2d1e3a;
-  border: 2px solid #5e3a9e;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1rem;
   border-radius: 10px;
-  padding: 15px;
+  margin: 1.5rem 0;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  line-height: 1.6;
+}
+
+/* History fills available space */
+.history {
+  margin-top: 2rem;
+  width: 100%;
+  text-align: left;
+  font-size: clamp(0.9rem, 1vw, 1rem);
 }
 
 .history h3 {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
   text-align: center;
-  color: #d7b8ff;
-  font-size: 12px;
-  margin-bottom: 10px;
 }
 
 .history ul {
@@ -150,22 +157,42 @@ body {
 }
 
 .history li {
-  font-size: 10px;
-  border-bottom: 1px solid #4a3560;
-  padding: 6px 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.6rem;
+  transition: 0.3s;
 }
 
-.history li:last-child {
-  border-bottom: none;
+.history li:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .history-icon {
-  font-size: 14px;
-  margin-right: 5px;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  margin-right: 0.4rem;
 }
 
-.potion-btn.selected {
-  border: 2px solid #fff;
-  box-shadow: 0 0 10px currentColor;
-  transform: scale(1.05);
+/* Animation fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive: small screen auto stack */
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+    justify-content: flex-start;
+  }
+
+  .potion-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .brew-btn,
+  .reset-btn {
+    width: 100%;
+  }
 }

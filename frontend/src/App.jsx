@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
 import CauldronAnimation from "./components/CauldronAnimation";
+import PotionInfoModal from "./components/PotionInfoModal";
 
 function App() {
   const [selectedPotions, setSelectedPotions] = useState([]);
@@ -11,9 +12,10 @@ function App() {
   const [comboName, setComboName] = useState("");
   const [comboIcon, setComboIcon] = useState("");
   const [history, setHistory] = useState([]);
+  const [selectedPotionInfo, setSelectedPotionInfo] = useState(null);
 
   const potions = [
-    { id: 1, name: "Fire Elixir", icon: "🔥", color: "#ff6b6b"},
+    { id: 1, name: "Fire Elixir", icon: "🔥", color: "#ff6b6b" },
     { id: 2, name: "Aqua Essence", icon: "💧", color: "#4dcfff" },
     { id: 3, name: "Earth Dust", icon: "🌿", color: "#7bffb0" },
     { id: 4, name: "Shadow Mist", icon: "🌑", color: "#5a3b91" },
@@ -62,11 +64,16 @@ function App() {
         setResult(text);
         setLoading(false);
 
-        // ✅ Save to potion history
-        setHistory((prev) => [
-          { name, icon, ingredients: [...selectedPotions] },
-          ...prev,
-        ]);
+        // ✅ Save potion info in history (Step 1 integrated)
+        const potionData = {
+          name,
+          icon,
+          description: response.data.result,
+          ingredients: [...selectedPotions],
+          color: selectedPotions[0]?.color || "#ffffff",
+        };
+
+        setHistory((prev) => [potionData, ...prev]);
       }, 1500);
     } catch (error) {
       console.error(error);
@@ -123,26 +130,22 @@ function App() {
           </div>
 
           {selectedPotions.length >= 2 && !loading && !result && (
-  <button className="brew-btn" onClick={brewPotion}>
-    ✨ Brew Potion
-  </button>
-)}
+            <button className="brew-btn" onClick={brewPotion}>
+              ✨ Brew Potion
+            </button>
+          )}
 
-   {loading && (
-  <CauldronAnimation
-    colors={selectedPotions.map((p) => p.color)}
-  />
-)}
+          {loading && <CauldronAnimation colors={selectedPotions.map((p) => p.color)} />}
 
           {comboName && (
             <div className="combo-name">
-              <h2>{comboIcon} {comboName}</h2>
+              <h2>
+                {comboIcon} {comboName}
+              </h2>
             </div>
           )}
 
-          {result && (
-            <div className="result" dangerouslySetInnerHTML={{ __html: result }} />
-          )}
+          {result && <div className="result" dangerouslySetInnerHTML={{ __html: result }} />}
 
           {result && (
             <button className="reset-btn" onClick={reset}>
@@ -156,9 +159,13 @@ function App() {
               <h3>📜 Potion History</h3>
               <ul>
                 {history.map((item, i) => (
-                  <li key={i}>
+                  <li
+                    key={i}
+                    className="clickable"
+                    onClick={() => setSelectedPotionInfo(item)}
+                  >
                     <span className="history-icon">{item.icon}</span>{" "}
-                    <strong>{item.name}</strong>  
+                    <strong>{item.name}</strong>
                     <br />
                     <small>{item.ingredients.join(" + ")}</small>
                   </li>
@@ -167,6 +174,14 @@ function App() {
             </div>
           )}
         </div>
+      )}
+
+      {/* 🧴 Potion Info Modal */}
+      {selectedPotionInfo && (
+        <PotionInfoModal
+          potion={selectedPotionInfo}
+          onClose={() => setSelectedPotionInfo(null)}
+        />
       )}
     </div>
   );
