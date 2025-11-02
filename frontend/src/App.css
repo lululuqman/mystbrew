@@ -1,0 +1,171 @@
+body {
+  margin: 0;
+  background-color: #1b1325;
+  font-family: "Press Start 2P", system-ui, monospace;
+  color: #f5f3e7;
+  text-align: center;
+}
+
+.app {
+  padding: 20px;
+}
+
+.title {
+  font-size: 24px;
+  color: #ffdc7b;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-line;
+  margin-bottom: 30px;
+}
+
+.brew-btn,
+.home-btn,
+.reset-btn {
+  background-color: #5e3a9e;
+  border: 2px solid #c1a4ff;
+  color: #fff;
+  padding: 12px 24px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 12px;
+  transition: all 0.2s ease-in-out;
+}
+
+.brew-btn:hover,
+.home-btn:hover,
+.reset-btn:hover {
+  background-color: #764fd0;
+}
+
+.potion-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.potion-card {
+  background-color: #2d1e3a;
+  border: 2px solid #56406f;
+  padding: 16px;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.potion-card.selected {
+  border-color: #d7b8ff;
+  background-color: #3a2750;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #d7b8ff;
+}
+
+.potion-icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.result {
+  margin-top: 30px;
+  background-color: #24172f;
+  border: 2px solid #c1a4ff;
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 12px;
+  white-space: pre-line;
+}
+
+.cauldron-anim {
+  margin-top: 30px;
+  position: relative;
+}
+
+.bubble {
+  width: 20px;
+  height: 20px;
+  background-color: #b69bff;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  animation: bubbleUp 1.5s ease-in-out infinite;
+}
+
+.bubble.delay {
+  animation-delay: 0.3s;
+}
+
+.bubble.delay2 {
+  animation-delay: 0.6s;
+}
+
+@keyframes bubbleUp {
+  0% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -80px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.combo-name {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #ffe9a3;
+  text-shadow: 0 0 6px #a084e8;
+}
+
+.history {
+  margin-top: 40px;
+  text-align: left;
+  max-width: 300px;
+  margin-inline: auto;
+  background-color: #2d1e3a;
+  border: 2px solid #5e3a9e;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.history h3 {
+  text-align: center;
+  color: #d7b8ff;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.history ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history li {
+  font-size: 10px;
+  border-bottom: 1px solid #4a3560;
+  padding: 6px 0;
+}
+
+.history li:last-child {
+  border-bottom: none;
+}
+
+.history-icon {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.potion-btn.selected {
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px currentColor;
+  transform: scale(1.05);
+}
