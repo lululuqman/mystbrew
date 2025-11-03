@@ -1,5 +1,7 @@
 import React from "react";
 import "./PotionInfoModal.css";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export default function PotionInfoModal({ potion, onClose }) {
   if (!potion) return null;
@@ -47,7 +49,11 @@ export default function PotionInfoModal({ potion, onClose }) {
         <div className="modal-content">
           <div className="modal-color" style={{ backgroundColor: potion.color }} />
 
-          <p className="modal-summary">{summary}</p>
+          <div className="modal-summary markdown-body">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {summary}
+          </ReactMarkdown>
+          </div>
 
           {effects.length > 0 && (
             <div className="modal-effects">

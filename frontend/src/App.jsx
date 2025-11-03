@@ -3,6 +3,8 @@ import axios from "axios";
 import "./App.css";
 import CauldronAnimation from "./components/CauldronAnimation";
 import PotionInfoModal from "./components/PotionInfoModal";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 function App() {
   const [selectedPotions, setSelectedPotions] = useState([]);
@@ -57,7 +59,7 @@ function App() {
   `${import.meta.env.VITE_API_URL}/brew`,
   { ingredients: selectedPotions.join(", ") }
 );
-        const text = response.data.result.replace(/\n/g, "<br/>");
+        const text = response.data.result;
         const { name, icon } = randomPotionName();
 
         setComboName(name);
@@ -146,7 +148,13 @@ function App() {
             </div>
           )}
 
-          {result && <div className="result" dangerouslySetInnerHTML={{ __html: result }} />}
+          {result && (
+  <div className="result markdown-body">
+    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+      {result}
+    </ReactMarkdown>
+  </div>
+)}
 
           {result && (
             <button className="reset-btn" onClick={reset}>
