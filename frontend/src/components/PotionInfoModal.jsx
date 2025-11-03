@@ -7,7 +7,7 @@ export default function PotionInfoModal({ potion, onClose }) {
   if (!potion) return null;
 
   const lines = potion.description?.split("\n").filter((l) => l.trim()) || [];
-  const summary = lines[0] || "A mysterious potion with unknown properties.";
+  const aura = lines[0] || "A mysterious potion with unknown properties.";
   const rawEffects = lines.slice(1, 3);
 
   // ✨ Extract concise effect keywords
@@ -49,10 +49,12 @@ export default function PotionInfoModal({ potion, onClose }) {
         <div className="modal-content">
           <div className="modal-color" style={{ backgroundColor: potion.color }} />
 
+          {/* 🌌 Aura Description */}
           <div className="modal-summary markdown-body">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {summary}
-          </ReactMarkdown>
+            <strong style={{ color: "white" }}>🌌 Aura Description:</strong>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {aura}
+            </ReactMarkdown>
           </div>
 
           {effects.length > 0 && (
